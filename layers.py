@@ -24,7 +24,7 @@ class standard_layer:
         if activation not in afs:
             raise ValueError(f"Activation function {activation} not found")
         self.activation = afs[activation]
-        self.weights = np.random.randn(input_size, n_nodes)
+        self.weights = np.random.normal(loc=0.0, scale=0.01, size=(input_size, n_nodes))
         self.biases = np.random.randn(self.n_nodes, 1)
         self.activations = np.zeros((input_size, self.n_nodes))
         self.deltas = np.zeros((input_size, 1))

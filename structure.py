@@ -23,7 +23,6 @@ class Network:
                 self.feedforward(X_batch)
                 self.backpropagation(y_batch)
                 self.gradient_descend(learning_rate)
-            print(f"Error: {np.mean((y - self.feedforward(X))**2)}")
 
 
     
@@ -57,8 +56,11 @@ class Network:
         for i in range(len(self.layers) - 1):
             current_layer_activations = self.layers[i].activations
             next_layer_deltas = self.layers[i + 1].deltas
+
+            # Clip deltas
+            np.clip(next_layer_deltas, -1e3, 1e3, out=next_layer_deltas)
+            
             adjustments = current_layer_activations.T @ next_layer_deltas / current_layer_activations.shape[0]
             self.layers[i+1].weights -= adjustments * learning_rate
-
 
 
