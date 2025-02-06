@@ -44,9 +44,17 @@ def softmax(x):
 def softmax_derivative(x):
     return softmax(x) * (1 - softmax(x))
 
+def linear(x):
+    return x
+
+def linear_derivative(x):
+    return np.ones_like(x)
+
+
 activation_functions = {
     "sigmoid" : activation_function("Sigmoid", sigmoid, sigmoid_derivative),
     "relu" : activation_function("ReLU", relu, relu_derivative),
     "tanh" : activation_function("Tanh", tanh, tanh_derivative),
-    "softmax" : activation_function("Softmax", softmax, softmax_derivative)
+    "softmax" : activation_function("Softmax", softmax, softmax_derivative),
+    "linear" : activation_function("Linear", linear, linear_derivative)
 }
